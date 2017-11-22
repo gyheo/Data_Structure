@@ -4,6 +4,9 @@
 #define CAPACITY 100
 #define BUFFER_SIZE 20
 
+// 전역변수(global variable) 선언
+// 외부에 선언된 변수
+// * data 영역에 저장됨
 char *names[CAPACITY];
 char *numbers[CAPACITY];
 int n = 0;
@@ -13,9 +16,9 @@ void find();
 void status();
 void del();
 
-
-
 int main(void){
+    // 지역변수(local variable) 선언
+    // * stack 영역에 저장됨
     char command[BUFFER_SIZE];
     while(1){
         printf("$ ");
