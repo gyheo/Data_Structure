@@ -17,6 +17,7 @@ void find();
 void status();
 void del();
 void save();
+int search(char *name);
 
 int main(void){
     // 지역변수(local variable) 선언
@@ -100,15 +101,24 @@ void find(){
   char buf[BUFFER_SIZE];
   scanf("%s", buf);
 
+  int index = search(buf);
+  if(index == -1){
+    printf("No person named \'%s\' exists \n", buf);
+  }
+  else{
+    printf("%s\n", numbers[index]);
+  }
+}
+
+int search(char *name){
   int i;
   for(i=0; i<n; i++){
-    if(strcmp(buf, names[i]) == 0){
-      printf("%s\n", numbers[i]);
-      return ;
+    if(strcmp(name, names[i]) == 0){
+      return i;
     }
   }
 
-  printf("No person named \'%s\' exists \n", buf);
+  return -1;
 }
 
 void status(){
@@ -144,17 +154,17 @@ void del(){
   char buf[BUFFER_SIZE];
   scanf("%s", buf);
 
-  int i;
-  for(i=0; i<n; i++){
-    if(strcmp(buf, names[i]) == 0){
-      names[i] = names[n-1];
-      numbers[i] = numbers[n-1];
-      // 인원 감소 -1
-      n--;
-      printf("\'%s\' was deleted successfully! \n", buf);
-      return;
-    }
+  int index = search(buf);
+  if(index == -1){
+    printf("No persion named \'%s\' exists. \n", buf);
+    return ;
   }
 
-  printf("No person named \'%s\' exists \n", buf);
+  int j = index;
+  for(; j<n-1; j++){
+    names[j] = names[j+1];
+    numbers[j] = numbers[j+1];
+  }
+  n--;
+  printf("\'%s\' was deleted successfully. \n", buf);
 }
