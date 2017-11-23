@@ -80,10 +80,19 @@ void add(){
   scanf("%s", buf1);
   scanf("%s", buf2);
 
-  names[n] = strdup(buf1);
-  numbers[n] = strdup(buf2);
-  n++;
+  int i = n - 1;
+  // * bubble sort와 비슷하게 정렬
+  // 영문 순서를 사전식으로 정렬하기 위해 필요
+  while(i>=0 && strcmp(names[i], buf1) > 0){
+    names[i+1] = names[i];
+    numbers[i+1] = numbers[i];
+    i--;
+  }
 
+  names[i+1] = strdup(buf1);
+  numbers[i+1] = strdup(buf2);
+
+  n++;
   printf("%s was added successfully! \n", buf1);
 }
 
@@ -117,7 +126,7 @@ void save(){
 
   scanf("%s", tmp);
   scanf("%s", fileName);
-
+  // 파일을 저장할 경우에는 (w)
   FILE *fp = fopen(fileName, "w");
   if(fp == NULL){
     printf("Open failed. \n");
@@ -130,6 +139,7 @@ void save(){
 
   fclose(fp);
 }
+
 void del(){
   char buf[BUFFER_SIZE];
   scanf("%s", buf);
