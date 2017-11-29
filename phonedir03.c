@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define INIT_CAPACITY 3
+#define INIT_CAPACITY 5
 #define BUFFER_SIZE 50
 
 // 전역변수(global variable) 선언
@@ -62,7 +62,7 @@ void process_command() {
   char *command, *argument1, *argument2;
 
   while(1){
-    printf(" $ ");
+    printf("$ ");
 
     if (read_line(command_line, BUFFER_SIZE) <= 0){
       continue;
@@ -140,8 +140,7 @@ void process_command() {
   }
 }
 
-void read(){
-  char fileName[BUFFER_SIZE];
+void read(char *fileName){
   char buf1[BUFFER_SIZE];
   char buf2[BUFFER_SIZE];
 
@@ -156,9 +155,7 @@ void read(){
 
   while((fscanf(fp, "%s", buf1) != EOF)){
       fscanf(fp, "%s", buf2);
-      names[n] = strdup(buf1);
-      numbers[n] = strdup(buf2);
-      n++;
+      add(buf1, buf2);
   }
 
   // 반드시 닫아주는 과정 추가!
