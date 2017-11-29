@@ -12,6 +12,9 @@ void main(void){
 
 }
 
+// n에 관계없이 상수 시간이 소요
+// (중요) 이 경우 알고리즘의 시간 복잡도는 O(1)이다
+
 int sample(int data[], int n){
   int k = n / 2;
   return data[k];
