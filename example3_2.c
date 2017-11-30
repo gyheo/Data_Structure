@@ -35,6 +35,7 @@ void main(void){
   }
 }
 
+// head가 전역변수가 아닌 경우
 void add_first(char *item){
   Node *temp = (Node*)malloc(sizeof(Node));
   temp->data = item;
