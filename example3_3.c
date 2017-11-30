@@ -13,7 +13,7 @@ typedef struct node Node;
 // Node *head = NULL;
 
 // void add_first(char *item);
-void add_first(Node **ptr_head, char *item);
+Node* add_first(Node *head, char *item);
 
 void main(void){
   Node *head = NULL;
@@ -31,7 +31,7 @@ void main(void){
   // q->next = head;
   // head = q;
   // add_first("Monday");
-  add_first(&head, "Monday");
+  head = add_first(head, "Monday");
 
   Node *p = head;
   while(p != NULL){
@@ -40,10 +40,19 @@ void main(void){
   }
 }
 
+/*
 // 원리는 똑같고 이차원 포인터를 이용했을 뿐
 void add_first(Node **ptr_head, char *item){
   Node *temp = (Node*)malloc(sizeof(Node));
   temp->data = item;
   temp->next = *ptr_head;
   *ptr_head = temp;
+}
+*/
+
+Node* add_first(Node *head, char *item){
+  Node *temp = (Node*)malloc(sizeof(Node));
+  temp->data = item;
+  temp->next = head;
+  return temp;
 }
